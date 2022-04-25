@@ -437,5 +437,266 @@ public class HW51 {
         System.out.println(verifyEquals(expectedResult10, zpl10));
 
         System.out.println(line);
+
+
+        /** Task 11 */
+//        Написать метод, который принимает на вход необходимые параметры
+//        и печатает строку ведомости выдачи зарплаты сотрудникам.
+//        Например:
+//
+//        Смирнова Мария Ивановна 		70000 руб 00 коп
+//
+//        Распечатать ведомость для нескольких сотрудников, например:
+//
+//        Март 2022
+//        Смирнова Мария Ивановна 		70000 руб 00 коп
+//        Серебряков Иван Петрович 		128059 руб 00 коп
+        printTask();
+        String month = "Март 2022";
+        System.out.println(month);
+        String name11 = "Смирнова Мария Ивановна ";
+        double zpl11 = 70000;
+        strokaVedomosti(name11, zpl11);
+        name11 = "Серебряков Иван Петрович";
+        zpl11 = 128059;
+        strokaVedomosti(name11, zpl11);
+        name11 = "Кузнецов Михаил Иванович";
+        zpl11 = 30783.5;
+        strokaVedomosti(name11, zpl11);
+        name11 = "Михайлова Полина Сергеевна";
+        zpl11 = 59879.65;
+        strokaVedomosti(name11, zpl11);
+
+        System.out.println(line);
+
+        /** Task 12 */
+//        Записать блок-схему в виде метода
+        printTask();
+        String defX = defineX(10);
+        System.out.println(defX);
+        String expectedResult12 = "x is positive"; //negative, positive, zero
+
+        /** Test 12 */
+        System.out.println(verifyEquals(expectedResult12, defX));
+
+        System.out.println(line);
+
+        /** Task 13 */
+//        Написать метод, который принимает на вход год рождения и возвращает
+//        ваше счастливое число. Счастливое число рассчитывается по формуле:
+//        сумма всех чисел, если результат больше 9, снова считается сумма всех чисел.
+//        Например:
+//        год рождения 1999
+//        1 + 9 + 9 + 9 = 28
+//        2 + 8 = 10
+//        1 + 0 = 1
+//        Счастливое число - 1
+        printTask();
+        int year = 1996;
+        int expectedResult13 = 7;
+        int happy = happy(year);
+        if (happy == 0) {
+            System.out.println("Вы ввели неверный год");
+        } else {
+            System.out.println("Ваше счастливое число = " + happy);
+        }
+
+        /** Test 13 */
+        System.out.println(verifyEquals(expectedResult13, happy));
+
+        System.out.println(line);
+
+        /** Task 14 */
+        printTask();
+//        а) Дано 3 числа. Необходимо рассчитать разницу между средним значением
+//        и медианой (median) значением. Если разница больше 2,
+//        необходимо показать сообщение: “Среднее значение … отличается от медианы … на … “.
+//        Иначе показать сообщение: “Среднее значение =  …, медиана =  … ”.
+//        b) Посчитать все то же самое с помощью методов класса Math, где возможно их использовать
+        double k = 5.54444;
+        double l = 12.266667;
+        double m = 15;
+        String sr = "Среднее значение ";
+        String otl = " отличается от медианы ";
+        String na = " на ";
+        String rav = " = ";
+        String med = ", медиана ";
+        double srednee = srednee(k, l, m);
+        double median = median(k, l, m);
+        double razn = razn(srednee, median);
+        double expectedResult14 = 1.33;
+        if (razn > 2) {
+            System.out.println(sr + srednee + otl + median + na + razn);
+        } else {
+            System.out.println(sr + rav + srednee + med + rav + median);
+        }
+
+        /** Test 14 */
+        System.out.println(verifyEquals(expectedResult14, razn));
+
+        System.out.println(line);
+
+        /** Task 15 */
+//        Написать метод, который использует методы класса Math, принимает на вход
+//        сумму к оплате (например, 10.75) и округляет сумму в пользу покупателя.
+//        Метод возвращает новую сумму к оплате в виде строки, например “10 руб 00 коп”.
+        printTask();
+
+        double sum15 = 10.75;
+        String expectedResult15 = "10 руб 00 коп";
+        String sumPok = sumPok(sum15);
+        System.out.println(sumPok);
+
+        /** Test 15 */
+        System.out.println(verifyEquals(expectedResult15, sumPok));
+
+        System.out.println(line);
+
+        /** Task 16 */
+//        Посчитать с помощью методов класса Math
+//        a = 3
+//        b = 4
+//        c = 20
+//        Вернуть значение с округлением в бОльшую сторону.
+        printTask();
+        int a = 3;
+        int b = 4;
+        int c = 20;
+        int expectedResult16 = 17;
+        int formula = formula(a, b, c);
+        System.out.println(formula);
+
+        /** Test 16 */
+        System.out.println(verifyEquals(expectedResult16, formula));
+
+        System.out.println(line);
+
+        /** Task 17 */
+        printTask();
+        /** 17.1 */
+//        Write the java statement that assigns 1 to x if y is greater than 0
+        int numPoint = 1;
+        printPoint(numPoint);
+
+        double y17 = 15.4;
+        int expectedResult171 = 1;
+        int x17 = x17(y17);
+        System.out.println(x17);
+
+        /** Test 17.1 */
+        System.out.println(verifyEquals(expectedResult171, x17));
+
+        System.out.println(lineP);
+        /** 17.2 */
+//        Suppose that score is a variable of type double. Write the java statement
+//        that increases the score by 5 marks if score is between 80 and 90
+        printPoint(++numPoint);
+
+        double score = 81;
+        double expectedResult172 = 86.0;
+        score = score(score);
+        System.out.println(score);
+
+        /** Test 17.2 */
+        System.out.println(verifyEquals(expectedResult172, score));
+
+        System.out.println(lineP);
+        /** 17.3 */
+//        Rewrite in Java the following statement without using the NOT(!) operator:
+//        item = ! ((i < 10) || (v >= 50))
+        printPoint(++numPoint);
+
+        int i = 3;
+        int v = 5;
+        boolean item = (i >= 10) && (v < 50);
+        System.out.println(item);
+
+        System.out.println(lineP);
+        /** 17.4 */
+//        Write a java statement that prints true if x is an odd number and positive
+        printPoint(++numPoint);
+
+        int x174 = 4;
+        boolean st174 = false;
+        if (x174 % 2 == 1 && x174 > 0) {
+            st174 = true;
+        }
+        System.out.println(st174);
+
+        System.out.println(lineP);
+        /** 17.5 */
+//        Write a java statement that prints true if both x and y are positive numbers
+        printPoint(++numPoint);
+
+        int x175 = 4;
+        int y175 = 6;
+        boolean st175 = false;
+        if (x175 % 2 == 0 && y175 % 2 == 0) {
+            st175 = true;
+        }
+        System.out.println(st175);
+
+        System.out.println(lineP);
+        /** 17.6 */
+//        Write a java statement that prints true if x and y have the same sign (+/-)
+        printPoint(++numPoint);
+
+        int x176 = 0;
+        int y176 = 6;
+        boolean st176 = false;
+        if (x176 * y176 != 0) {
+            if (x176 * y176 > 0) {
+                st176 = true;
+            }
+        }
+        System.out.println(st176);
+
+        System.out.println(line);
+
+        /** Task 18 */
+//        Написать метод, который с помощью методов класса Math высчитывает любую степень
+//        сгенерированного случайного числа. Метод возвращает математически округленное
+//        целое значение и выводит на экран: “Число … в степени … = …”
+        printTask();
+        int stepen = 2;
+        double chislo = Math.random();
+        int expectedResult18 = (int) (chislo * chislo);
+        int actualRezult = stepen(chislo, stepen);
+
+        System.out.println(line);
+
+        /** Test 18 */
+        System.out.println(verifyEquals(expectedResult18, actualRezult));
+
+        System.out.println(line);
+
+
+        /** Task 19 */
+//        Написать метод, который возвращает случайное число в пределах от 1 до 99 включительно.
+        printTask();
+
+        int s = sluch99();
+        System.out.println(s);
+
+        System.out.println(line);
+
+        /** Task 20 */
+//        Assume that the following declarations have been made:
+//        int year;
+//        boolean isLeapYear;
+//
+//        Write a fragment that will assign isLeapYear to true
+//        if year represents a leap year and false otherwise
+        printTask();
+
+        int year20 = 2000;
+        boolean expectedResult20 = true;
+        boolean isLeapYear = isLeapYear(year20);
+        System.out.println(year20 + " это высокосный год = " + isLeapYear);
+
+        /** Test 20 */
+        System.out.println(verifyEquals(expectedResult20, isLeapYear));
+
+        System.out.println(line);
     }
 }
