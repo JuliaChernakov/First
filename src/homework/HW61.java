@@ -1,2 +1,4 @@
-package homework;public class HW61 {
+package homework;
+
+public class HW61 {
 }
