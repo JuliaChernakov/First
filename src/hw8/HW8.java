@@ -195,7 +195,7 @@ public class HW8 {
         int[] arrayHelp = new int[array.length];
         for (int i = 0; i < array.length; i++) {
             int n = 0;
-            for (int j = 0; j < (array.length); j++) {
+            for (int j = i; j < (array.length); j++) {
                 if (array[i] == array[j]) {
                     n++;
                 }
@@ -222,39 +222,71 @@ public class HW8 {
         return arrayNew;
     }
 
-    public static int[] countUnik(int[] array) {
-        int unik = 0;
-        for (int i = 0; i < array.length; i++) {
-            int n = 0;
-            for (int j = 0; j < array.length; j++) {
-                if (array[i] == array[j]) {
-                    n++;
+    // метод считает количество уникальных элементов, включая повторяющиеся
+    public static int[] countUnik1(int[] array) {
+        if (array.length > 0) {
+            int unik = 0;
+            for (int i = 0; i < array.length; i++) {
+                int n = 0;
+                for (int j = 0; j < array.length; j++) {
+                    if (array[i] == array[j]) {
+                        n++;
+                    }
+                }
+                if (n == 1) {
+                    unik = unik + 1;
                 }
             }
-            if (n == 1) {
-                unik = unik + 1;
-            }
-        }
-        int[] arrayNew24 = new int[2];
-        arrayNew24[0] = unik;
-        arrayNew24[1] = array.length - unik;
+            int[] arrayNew24 = new int[2];
+            arrayNew24[0] = unik;
+            arrayNew24[1] = array.length - unik;
 
-        return arrayNew24;
+            return arrayNew24;
+        }
+        return new int[]{};
+    }
+
+    // метод считает количество уникальных элементов, исключая повторяющиеся
+        public static int[] countUnik2(int[] array) {
+
+        if (array.length > 0) {
+            int unik = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] >= 0) {
+                    for (int j = i + 1; j < array.length; j++) {
+                        if (array[i] == array[j]) {
+                            array[j] = -1;
+                            unik++;
+                        }
+                    }
+                }
+            }
+            int[] arrayNew24 = new int[2];
+            arrayNew24[0] = unik;
+            arrayNew24[1] = array.length - unik;
+
+            return arrayNew24;
+        }
+        return new int[]{};
     }
 
     public static int[] between(int[] array, int a, int b) {
-        int min = min(a, b);
-        int max = max(a, b);
-        int[] arrayNew25 = new int[max - min + 1];
-        for (int i = 0; i < arrayNew25.length; i++) {
-            arrayNew25[i] = array[i + min];
+        if (a >= 0 || a < array.length || b >= 0 || b < array.length) {
+            int min = min(a, b);
+            int max = max(a, b);
+            int[] arrayNew25 = new int[max - min + 1];
+            for (int i = 0; i < arrayNew25.length; i++) {
+                arrayNew25[i] = array[i + min];
+            }
+            return arrayNew25;
         }
-        return arrayNew25;
+        return new int[]{};
     }
 
     public static int[] oneOfTwo(int[] array1, int[] array2) {
-        if (array1.length == 0 || array2.length == 0)
+        if (array1.length == 0 && array2.length == 0) {
             return null;
+        }
         int[] arrayHelp = new int[array1.length + array2.length];
         for (int i = 0; i < array1.length; i++) {
             arrayHelp[i] = array1[i];
@@ -263,8 +295,7 @@ public class HW8 {
             arrayHelp[array1.length + i] = array2[i];
         }
         int[] arrayNew26 = unik(arrayHelp);
-        printArray(arrayHelp);
-        System.out.println();
+
         return arrayNew26;
     }
 
@@ -448,7 +479,7 @@ public class HW8 {
 //        Написать метод, который принимает массив целых положительных чисел больше 0,
 //        и возвращает массив уникальных чисел.
         printTask();
-        int[] array23 = {1, 2, 3, 4, 4, 6, 4, 8, 3, 10};
+        int[] array23 = {1, 2, 3, 4, 4, 6, 3, 4, 9, 10};
         int[] arrayNew23 = unik(array23);
         printArray(arrayNew23);
         System.out.println("");
@@ -457,9 +488,15 @@ public class HW8 {
         /** Task 24 */
 //        Написать метод, который принимает на вход массив целых положительных чисел,
 //        и возвращает количество уникальных и неуникальных элементов в этом массиве
+//        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+//        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+//        {1, 2, 3, 4, 4, 6, 3, 4, 9, 10}
         printTask();
-        int[] arrayNew24 = countUnik(array23);
-        printArray(arrayNew24);
+        int[] arrayNew241 = countUnik1(array23);
+        int[] arrayNew242 = countUnik2(array23);
+        printArray(arrayNew241);
+        System.out.println();
+        printArray(arrayNew242);
         System.out.println("");
         line();
 
@@ -471,7 +508,7 @@ public class HW8 {
         printTask();
         int a = 2;
         int b = 5;
-        int[] arrayNew25 = between(array23, a, b);
+        int[] arrayNew25 = between(array22, a, b);
         printArray(arrayNew25);
         System.out.println();
         line();
