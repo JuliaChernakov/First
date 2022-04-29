@@ -2,6 +2,7 @@ package hw8;
 
 import static hw8.HW8_1.*;
 import static lessons.Utils.*;
+import static lessons.Utils.checkPositive;
 
 public class HW8 {
 
@@ -36,50 +37,43 @@ public class HW8 {
         return array;
     }
 
-    public static Double[] multArray(int[] array) {
-        Double[] arrayNew = new Double[array.length];
+    public static double[] multArray(int[] array) {
+//        if (array.length > 0) {   (можно без проверки, т.к. вернется пустой массив)
+        double[] arrayNew = new double[array.length];
         for (int i = 0; i < array.length; i++) {
             arrayNew[i] = array[i] * 2.5;
         }
         return arrayNew;
     }
+//        return new double[]{};
+//    }
 
     public static int numEven(int[] array) {
-        int n = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > 0) {
+        if (array.length > 0 && checkPositive(array)) {
+            int n = 0;
+            for (int i = 0; i < array.length; i++) {
                 if (array[i] % 2 == 0) {
                     n++;
                 }
-            } else {
-
-                return -1;
             }
+            return n;
         }
-
-        return n;
+        return Integer.MIN_VALUE;
     }
 
     public static int[] findOdd(int[] array) {
-        int n = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 1) {
-                n++;
-            }
+        if (checkPositive(array)) {
+            return makeArrayOdd(array);
         }
-        int[] arrayNew = new int[n];
-        int j = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 != 0) {
-                arrayNew[j] = array[i];
-                j++;
-            }
-        }
-        return arrayNew;
+        int[] arrayEmpty = new int[]{};
+        return arrayEmpty;
     }
 
     public static boolean[] countBig(int[] array) {
         boolean[] arrayNew = new boolean[array.length];
+        if (array == null || array.length == 0) {
+            return arrayNew;
+        }
         for (int i = 0; i < array.length; i++) {
             if (array[i] > 10) {
                 arrayNew[i] = true;
@@ -93,102 +87,78 @@ public class HW8 {
     public static String makeString(String[] array) {
         String string = "";
         for (int i = 0; i < array.length; i++) {
-            string = (string + array[i] + " ");
+            string += array[i] + " ";
         }
         return string;
     }
 
-    public static int  sumHalf(int[] array) {
-        if (array.length == 0) {
-            return 0;
-        }
+    public static int sumHalf(int[] array) {
         int sum = 0;
         for (int i = array.length / 2; i < array.length; i++) {
-            sum = sum + array[i];
+            sum += array[i];
         }
         return sum;
     }
 
     public static int[] multTable(int m) {
-        int[] multTable = new int[11];
-        for (int i = 0; i < 11; i++) {
-            multTable[i] = m * i;
+        if (m < 2 || m > 9) {
+            return new int[]{};
+        }
+        int[] multTable = new int[10];
+        for (int i = 0; i < 10; i++) {
+            multTable[i] = m * (i + 1);
         }
 
         return multTable;
     }
 
     public static int[] evenOrOdd(int[] array) {
-        int e = 0;
-        int o = 0;
-        int n;
-        boolean even = false;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 0) {
-                e++;
-            } else {
-                o++;
-            }
+        if (countEven(array) > countOdd(array)) {
+            return makeArrayEven(array);
+        } else if (countEven(array) < countOdd(array)) {
+            return makeArrayOdd(array);
+        } else {
+            return new int[]{};
         }
-        if (e > o) {
-            n = e;
-            even = true;
-        } else { // if (o > e) {
-            n = o;
-//        } else {
-//            return null;
-        }
-        int[] arrayNew = new int[n];
-        int j = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (even) {
-                if (array[i] % 2 == 0) {
-                    arrayNew[j] = array[i];
-                    j++;
-                }
-            } else {
-                if (array[i] % 2 == 1) {
-                    arrayNew[j] = array[i];
-                    j++;
-                }
-            }
-        }
-        return arrayNew;
     }
 
-    public static int[] arrayNew18(int n) {
-        int arrayNew[] = new int[n];
-        for (int i = 0; i < n; i++) {
-            arrayNew[i] = (int) (Math.random() * 99 + 1);
-        }
-        return arrayNew;
+    public static int[] arrayNew18(int begin, int end, int length) {
+
+        return makeRandomArray(begin, end, length);
     }
 
     public static int[] arrayNew19(int l, int d) {
-        int[] arrayNew = new int[l];
-        for (int i = 0; i < l; i++) {
-            arrayNew[i] = (int) (Math.random() * (Math.pow(10, d) - Math.pow(10, (d - 1)) + Math.pow(10, (d - 1))));
-        }
-        return arrayNew;
+        int begin = (int) Math.pow(10, d - 1);
+        int end = (int) Math.pow(10, d) - 1;
+
+        return makeRandomArray(begin, end, l);
     }
+//        int[] arrayNew = new int[l];
+//        for (int i = 0; i < l; i++) {
+//            arrayNew[i] = (int) (Math.random() * (Math.pow(10, d) - Math.pow(10, (d - 1))) + Math.pow(10, (d - 1)));
+//        }
+//        return arrayNew;
+//    }
 
     public static int[] chTwo(int[] array) {
-        int n = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > 9 && array[i] < 100) {
-                n++;
+        if (array.length > 0) {
+            int n = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] > 9 && array[i] < 100) {
+                    n++;
+                }
             }
-        }
-        int[] arrayTwo = new int[n];
-        int j = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > 9 && array[i] < 100) {
-                arrayTwo[j] = array[i];
-                j++;
+            int[] arrayTwo = new int[n];
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] > 9 && array[i] < 100) {
+                    arrayTwo[arrayTwo.length - n] = array[i];
+                    n--;
+                }
             }
+            return arrayTwo;
+        } else {
+            return new int[]{};
         }
-
-        return arrayTwo;
     }
 
     public static int[] arrayDiff(int[] array) {
@@ -264,7 +234,7 @@ public class HW8 {
             if (n == 1) {
                 unik = unik + 1;
             }
-         }
+        }
         int[] arrayNew24 = new int[2];
         arrayNew24[0] = unik;
         arrayNew24[1] = array.length - unik;
@@ -301,12 +271,15 @@ public class HW8 {
     public static void main(String[] args) {
 
         /** Task 6 */
+//        Сравнить переменные соответствующих типов из классов HW8_1 и HW8
+//        и распечатать результат сравнения в виде таблички
         numTask = 6;
         printTask();
         table(verify(int8, int81), verify(dou8, dou81), verify(str8, str81));
         System.out.println();
 
         /** Task 7 */
+//        Написать метод, который принимает на вход 5 целых чисел,  и возвращает массив из этих же чисел
         printTask();
         int array7[] = makeArray(1, 2, 3, 4, 5);
         for (int i = 0; i < array7.length; i++) {
@@ -316,6 +289,7 @@ public class HW8 {
         line();
 
         /** Task 8 */
+//        Написать метод, который принимает на вход 5 чисел типа double, и возвращает массив из этих же чисел
         printTask();
         double array8[] = makeArray(1.5, 2, 3, 4, 5);
         for (int i = 0; i < array8.length; i++) {
@@ -325,6 +299,7 @@ public class HW8 {
         line();
 
         /** Task 9 */
+//        Написать метод, который принимает на вход 5 слов, и возвращает массив из этих слов
         printTask();
         String array9[] = makeArray("J", "U", "L", "I", "A");
         for (int i = 0; i < array9.length; i++) {
@@ -334,9 +309,11 @@ public class HW8 {
         line();
 
         /** Task 10 */
+//        Написать метод, который принимает на вход массив целых чисел,
+//        и возвращает массив тех же чисел, умноженных на 2.5
         printTask();
         int[] array10 = {0, -2, 3, 4, -5, 6};
-        Double[] arrayNew10 = multArray(array10);
+        double[] arrayNew10 = multArray(array10);
         for (int i = 0; i < arrayNew10.length; i++) {
             System.out.print(arrayNew10[i] + ", ");
         }
@@ -344,33 +321,28 @@ public class HW8 {
         line();
 
         /** Task 11 */
+//        Написать метод, который принимает на вход массив целых положительных чисел,
+//        и возвращает количество четных чисел в этом массиве
         printTask();
-        int[] array11 = {3, 2, 3, -9, 5, 3};
+        int[] array11 = {3, 5, 4, 8, 5, 3};
         System.out.println(numEven(array11));
         line();
 
         /** Task 12 */
+//        Написать метод, который принимает на вход массив целых положительных чисел,
+//        и возвращает массив нечетных чисел
         printTask();
         int[] array12 = {2, 9, 4, 11, 6, 5};
-        boolean neg = false;
-        for (int i = 0; i < array12.length; i++) {
-            if (array12[i] <= 0) {
-                neg = true;
-                break;
-            }
-        }
-        if (neg) {
-            System.out.println("Invalid data");
-        } else {
-            int[] arrayNew12 = findOdd(array12);
-            for (int i = 0; i < arrayNew12.length; i++) {
-                System.out.print(arrayNew12[i] + ", ");
-            }
-        }
+
+        int[] arrayNew12 = findOdd(array12);
+        printArray(arrayNew12);
+
         System.out.println();
         line();
 
         /** Task 13 */
+//        Написать метод, который принимает на вход массив целых чисел,
+//        и возвращает массив значений true или false, если числа больше 10
         printTask();
         int[] array13 = {11, 10, 13, 14, 5, 6};
         boolean[] arrayNew13 = countBig(array13);
@@ -381,29 +353,28 @@ public class HW8 {
         line();
 
         /** Task 14 */
+//        Написать метод, который принимает на вход массив слов,  и возвращает строку, состоящую из этих слов
         printTask();
-        String[] words = {"This", "is", "the", "house", "that", "Jack", "built" };
+        String[] words = {"This", "is", "the", "house", "that", "Jack", "built"};
         String string = makeString(words);
         System.out.println(string);
         line();
 
         /** Task 15 */
+//        Написать метод, который принимает массив целых чисел и считает сумму чисел во второй половине массива
         printTask();
         int[] array15 = {1, 2, 3, 4, 5, 6, 7, 8};
         System.out.println(sumHalf(array15));
         line();
 
         /** Task 16 */
+//        Написать метод, который принимает на вход целое положительные число в пределах
+//        от 1 до 10 исключительно, и возвращает таблицу умножения на это число в виде массива
         printTask();
-        int m = 9;
-        if (m < 2 || m > 9) {
-            System.out.println("invalid number");
-        } else {
-            int[] multTable = multTable(m);
-            for (int i = 0; i < 11; i++) {
-                System.out.print(multTable[i] + ", ");
-            }
-        }
+        int m = 8;
+        int[] multTable = multTable(m);
+        printArray(multTable);
+
         System.out.println();
         line();
 
@@ -411,7 +382,7 @@ public class HW8 {
 //        Написать метод, который принимает массив целых чисел и возвращает массив четных чисел,
 //        если четных чисел больше, или массив нечетных чисел, если нечетных чисел больше.
         printTask();
-        int[] array17 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12};
+        int[] array17 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
         int[] arrayNew17 = evenOrOdd(array17);
         printArray(arrayNew17);
         System.out.println();
@@ -419,13 +390,13 @@ public class HW8 {
 
         /** Task 18 */
         // Написать метод, который принимает на вход длину массива и генерирует
-        // массив случаейных положительных чисел от 0 до 100 исключительно
+        // массив случайных положительных чисел от 0 до 100 исключительно
         printTask();
-        int n = 10;
-        int array18[] = arrayNew18(n);
-        for (int i = 0; i < n; i++) {
-            System.out.print(array18[i] + ", ");
-        }
+        int begin = 1;
+        int end = 99;
+        int length = 10;
+        int array18[] = arrayNew18(begin, end, length);
+        printArray(array18);
         System.out.println();
         line();
 
@@ -437,9 +408,7 @@ public class HW8 {
         int l = 30;
         int d = 2;
         int array19[] = arrayNew19(l, d);
-        for (int i = 0; i < l; i++) {
-            System.out.print(array19[i] + ", ");
-        }
+        printArray(array19);
         System.out.println();
         line();
 
@@ -448,9 +417,7 @@ public class HW8 {
 //        массив только двузначных чисел. ПРоверить работу метода на массиве из задания 18.
         printTask();
         int[] array20 = chTwo(array18);
-        for (int i = 0; i < array20.length; i++) {
-            System.out.print(array20[i] + ", ");
-        }
+        printArray(array20);
         System.out.println();
         line();
 
@@ -459,10 +426,8 @@ public class HW8 {
 //        двузначных чисел, и возвращает массив разниц между десятками и единицами
         printTask();
         int[] array21 = {34, 23, 76, 46, 72, 65, 97, 37};
-        int[] arrayNew21 = arrayDiff(array19);
-        for (int i = 0; i < arrayNew21.length; i++) {
-            System.out.print(arrayNew21[i] + ", ");
-        }
+        int[] arrayNew21 = arrayDiff(array20);
+        printArray(arrayNew21);
         System.out.println();
         line();
 
@@ -519,7 +484,5 @@ public class HW8 {
         printArray(arrayNew26);
         System.out.println();
         line();
-
-
     }
 }
