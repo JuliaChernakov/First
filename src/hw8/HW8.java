@@ -2,7 +2,6 @@ package hw8;
 
 import static hw8.HW8_1.*;
 import static lessons.Utils.*;
-import static lessons.Utils.checkPositive;
 
 public class HW8 {
 
