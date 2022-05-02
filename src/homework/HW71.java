@@ -27,6 +27,7 @@ public class HW71 {
             average = average + array[i];
         }
         average = average / array.length;
+
         return new int[]{min, max, average};
     }
 
@@ -402,10 +403,12 @@ public class HW71 {
         /** Task 23 */
 //        Создать двумерный массив, который состоит из имен, возрастов, цветов котов.
 //        Распечатать все данные котов в коробках с четными индексами, используя двумерный массив
+
         printTask();
         /** option 1 - в строках коты, в столбцах признаки */
 //        Object[][] cats = new Object[8][3]; - массив типа Objects - если разные типы данных
         String[][] cats1 = new String[8][3]; // если можно все данные перевести в String
+
         for (int i = 0; i < 8; i++) {
             cats1[i][0] = catsNames[i];
             for (int j = 0; j < catsAges.length; j++) {
