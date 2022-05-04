@@ -92,11 +92,5 @@ public class Lesson10 {
         String strUp = str4.toUpperCase();
         System.out.println(strUp);
         System.out.println(strUp.compareToIgnoreCase(strLow)); // 0 (то есть они равны)
-
-
-
-
-
-
     }
 }
