@@ -92,13 +92,5 @@ public class Triangles {
             }
             System.out.println("");
         }
-
-
-
-
-
-
-
-
     }
 }
