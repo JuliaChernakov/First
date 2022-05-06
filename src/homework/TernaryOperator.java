@@ -3,7 +3,7 @@ package homework;
 public class TernaryOperator {
 
     public static boolean findBig(int a, int b) {
-g
+
         return a >= b;
     }
 
