@@ -12,6 +12,8 @@ public class TernaryOperator {
         return a > b ? "a bigger than b" : "b bigger than a";
     }
 
+//    statement ? "answer 1" : "answer 2"
+
     public static void main(String[] args) {
         System.out.println(findBig(5, 5));
         System.out.println(whatIsBigger(5, 6));
