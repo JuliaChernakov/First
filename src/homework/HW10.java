@@ -175,9 +175,7 @@ public class HW10 {
     public static String[] arrayWords (String string) {
         if (!string.isEmpty()) {
 
-
-
-
+            return string.trim().split(" ");
         }
 
         return new String[0];
@@ -314,7 +312,9 @@ public class HW10 {
 
         printTask();
         printArray(arrayWords("QA for Everyone"));
+        System.out.println();
         printArray(arrayWords("Александр Сергеевич Пушкин"));
+        System.out.println();
         line();
 
         /** Task 12 */
