@@ -55,11 +55,11 @@ public class Utils {
     }
 
     public static void printArray(String[] array) {
-        System.out.print("[");
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
+        System.out.print("{");
+        for (int i = 0; i < array.length - 1; i++) {
+            System.out.print("\"" + array[i] + "\", ");
         }
-        System.out.print("]");
+        System.out.print("\"" + array[array.length - 1] + "\"" + "}\n");
     }
 
     /**
