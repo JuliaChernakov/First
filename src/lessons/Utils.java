@@ -59,7 +59,7 @@ public class Utils {
         for (int i = 0; i < array.length - 1; i++) {
             System.out.print("\"" + array[i] + "\", ");
         }
-        System.out.print("\"" + array[array.length - 1] + "\"" + "}\n");
+        System.out.print("\"" + array[array.length - 1] + "\"" + "}");
     }
 
     /**

@@ -35,7 +35,7 @@ public class HW10 {
         return "";
     }
 
-//        Написать метод, который принимает на вход строку.
+    //        Написать метод, который принимает на вход строку.
 //        Если строка не пустая (проверить методом из видео), то примените метод
 //        по удалению пробелов в начале строки и в конце строки.
 //        Догадаться, каким методом из видео можно проверить, были ли пробелы.
@@ -58,7 +58,7 @@ public class HW10 {
         return "Строка пустая";
     }
 
-//        Написать алгоритм RemoveAlla.
+    //        Написать алгоритм RemoveAlla.
 //        С помощью методов из видео1, написать алгоритм, который принимает на вход строку.
 //        Если строка валидная, то метод удаляет все буквы a из строки, если таковые имеются.
 //        Метод возвращает обработанную строку.
@@ -73,7 +73,7 @@ public class HW10 {
         return string;
     }
 
-//        Написать алгоритм RemoveAllZeros.
+    //        Написать алгоритм RemoveAllZeros.
 //        С помощью методов из видео1, написать алгоритм, который принимает на вход строку,
 //        состоящую из цифр. Если строка валидная, то метод удаляет все пробелы из строки,
 //        если таковые имеются. Метод возвращает обработанную строку, в которой нет нулей.
@@ -86,7 +86,7 @@ public class HW10 {
         return string;
     }
 
-//        Написать алгоритм RemoveAllSpaces.
+    //        Написать алгоритм RemoveAllSpaces.
 //        С помощью методов из видео1, написать алгоритм, который принимает на вход строку.
 //        Если строка валидная, то метод удаляет все пробелы из строки, если таковые имеются.
 //        Метод возвращает обработанную строку.
@@ -98,7 +98,7 @@ public class HW10 {
         return string;
     }
 
-//        Напишите метод, который принимает на вход строку и считает,
+    //        Напишите метод, который принимает на вход строку и считает,
 //        сколько букв а или А содержится в строке.
     public static int countAa(String string) {
         int numberA = 0;
@@ -112,7 +112,7 @@ public class HW10 {
         return numberA;
     }
 
-//    Напишите метод, который принимает на вход текст и проверяет,
+    //    Напишите метод, который принимает на вход текст и проверяет,
 //    содержится ли в тексте хотя бы одно слово Java.
     public static boolean findJava(String string) {
         if (!string.isEmpty()) {
@@ -122,7 +122,7 @@ public class HW10 {
         return false;
     }
 
-//    Напишите метод, который принимает на вход строку, и добавляет Кавычки в начале строки,
+    //    Напишите метод, который принимает на вход строку, и добавляет Кавычки в начале строки,
 //    точку и кавычки в конце строки с помощью метода concat()
     public static String addPunct(String string) {
         if (string != null) {
@@ -135,7 +135,7 @@ public class HW10 {
         return null;
     }
 
-//    Напишите метод, кторый принимает на вход название города и исправляет написание
+    //    Напишите метод, кторый принимает на вход название города и исправляет написание
     public static String correctCity(String string) {
         if (!string.isEmpty()) {
             string = string.trim().toLowerCase();
@@ -146,7 +146,7 @@ public class HW10 {
         return string;
     }
 
-//    Напишите метод, который принимает на вход строку, и возвращает все,
+    //    Напишите метод, который принимает на вход строку, и возвращает все,
 //    что находится между первой и последней буквой-параметром:
     public static String between(String string, char i) {
         if (!string.isEmpty()) {
@@ -159,9 +159,9 @@ public class HW10 {
         return string;
     }
 
-//    Напишите метод, который принимает на вход слово, и возвращает true,
+    //    Напишите метод, который принимает на вход слово, и возвращает true,
 //    если слово начинается и заканчивается на одинаковую букву, и false иначе
-    public static boolean sameLetters (String string) {
+    public static boolean sameLetters(String string) {
         if (!string.isEmpty()) {
             string = string.trim().toLowerCase();
             return string.charAt(0) == string.charAt(string.length() - 1);
@@ -170,9 +170,9 @@ public class HW10 {
         return false;
     }
 
-//    Напишите метод, который принимает на вход предложение и возвращает
+    //    Напишите метод, который принимает на вход предложение и возвращает
 //    слова из этого предложения в виде массива слов
-    public static String[] arrayWords (String string) {
+    public static String[] arrayWords(String string) {
         if (!string.isEmpty()) {
 
             return string.trim().split(" ");
@@ -181,9 +181,9 @@ public class HW10 {
         return new String[0];
     }
 
-//        Написать метод, который принимает на вход предложение, которое состоит
+    //        Написать метод, который принимает на вход предложение, которое состоит
 //        из имени, фамилии, отчества и возвращает массив строк
-    public static String[] arrayStrings (String string) {
+    public static String[] arrayStrings(String string) {
         if (!string.isEmpty()) {
             String[] array = new String[3];
             array = string.split(" ");
@@ -197,8 +197,62 @@ public class HW10 {
         return new String[0];
     }
 
+    //        Написать метод, который возвращает сумму всех букв слова
+    public static int sumAllLetters(String string) {
+        if (!string.isEmpty()) {
+            boolean allLetters = true;
+            int sum = 0;
 
-//        Написать метод, который возвращает сумму всех букв слова
+            /** Option 1 */
+//            char charArray[] = string.toCharArray();
+//            for (int i = 0; i < charArray.length; i++) {
+//                if (charArray[i] < 65 || charArray[i] > 122) {
+//                    allLetters = false;
+//                }
+//            }
+//            if (allLetters) {
+//                for (int i = 0; i < charArray.length; i++) {
+//                    sum += charArray[i];
+//                }
+//
+//                return sum;
+//            }
+            /** end of Option 1 */
+
+            /** Option 2 */
+            for (int i = 0; i < string.length(); i++) {
+                if (string.charAt(i) < 65 || string.charAt(i) > 122) {
+                    allLetters = false;
+                }
+            }
+            if (allLetters) {
+                for (int i = 0; i < string.length(); i++) {
+                    sum += string.charAt(i);
+                }
+
+                return sum;
+            }
+            /** end of Option 2 */
+        }
+
+        return 0;
+    }
+
+    //        Написать метод, который принимает на вход 2 буквы и возвращает true,
+//        если первая буква встречается раньше второй, иначе метод возвращает false
+    public static boolean letterFirst(char letter1, char letter2) {
+        if (letter1 > 65 && letter1 < 122 && letter2 > 65 && letter2 < 122) {
+            if (letter1 < letter2) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
 
@@ -273,19 +327,19 @@ public class HW10 {
                 "support Java 8 with public updates for personal use indefinitely. Other vendors have begun to offer " +
                 "zero-cost builds of OpenJDK 8 and 11 that are still receiving security and other upgrades."));
         System.out.println(findJava("As a decrepit father takes delight\n" +
-                                    "To see his active child do deeds of youth,\n" +
-                                    "So I, made lame by fortune’s dearest spite,\n" +
-                                    "Take all my comfort of thy worth and truth.\n" +
-                                    "For whether beauty, birth, or wealth, or wit,\n" +
-                                    "Or any of these all, or all, or more,\n" +
-                                    "Entitled in thy parts do crownèd sit,\n" +
-                                    "I make my love engrafted to this store.\n" +
-                                    "So then I am not lame, poor, nor despised,\n" +
-                                    "Whilst that this shadow doth such substance give\n" +
-                                    "That I in thy abundance am sufficed,\n" +
-                                    "And by a part of all thy glory live.\n" +
-                                    "Look what is best, that best I wish in thee.\n" +
-                                    "This wish I have; then ten times happy me."));
+                "To see his active child do deeds of youth,\n" +
+                "So I, made lame by fortune’s dearest spite,\n" +
+                "Take all my comfort of thy worth and truth.\n" +
+                "For whether beauty, birth, or wealth, or wit,\n" +
+                "Or any of these all, or all, or more,\n" +
+                "Entitled in thy parts do crownèd sit,\n" +
+                "I make my love engrafted to this store.\n" +
+                "So then I am not lame, poor, nor despised,\n" +
+                "Whilst that this shadow doth such substance give\n" +
+                "That I in thy abundance am sufficed,\n" +
+                "And by a part of all thy glory live.\n" +
+                "Look what is best, that best I wish in thee.\n" +
+                "This wish I have; then ten times happy me."));
         line();
 
         /** Task 7 */
@@ -350,16 +404,18 @@ public class HW10 {
 //        “123” → 0
 
         printTask();
+        System.out.println(sumAllLetters("abc"));
+        System.out.println(sumAllLetters("ABC"));
+        System.out.println(sumAllLetters("123"));
+        line();
 
+        /** Task 14 */
+//        method(“a”, “m”) → true
+//        method(“m”, “l”) → false
 
-
-
-
-
-
-
-
-
-
+        printTask();
+        System.out.println(letterFirst('a', 'm'));
+        System.out.println(letterFirst('m', 'l'));
+        line();
     }
 }
