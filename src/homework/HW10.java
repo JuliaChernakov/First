@@ -80,9 +80,11 @@ public class HW10 {
         if (string != null && !string.isEmpty()) {
             string = string.replace(" ", "");
             string = string.replace("0", "");
+
+            return string;
         }
 
-        return string;
+        return "";
     }
 
     //        Написать алгоритм RemoveAllSpaces.
@@ -90,25 +92,26 @@ public class HW10 {
 //        Если строка валидная, то метод удаляет все пробелы из строки, если таковые имеются.
 //        Метод возвращает обработанную строку.
     public static String removeAllSpaces(String string) {
-        if (!string.isEmpty()) {
-            string = string.replace(" ", "");
+        if (string != null && !string.isEmpty()) {
+
+            return string.trim().replace(" ", "");
         }
 
-        return string;
+        return "";
     }
 
     //        Напишите метод, который принимает на вход строку и считает,
 //        сколько букв а или А содержится в строке.
     public static int countAa(String string) {
-        int numberA = 0;
-        if (!string.isEmpty()) {
-            int l = string.length();
-            string = string.toLowerCase().replace("a", "");
-            int l1 = string.length();
-            numberA = l - l1;
+        if (string != null && !string.isEmpty()) {
+
+            return string.length() - string
+                    .toLowerCase()
+                    .replace("a", "")
+                    .length();
         }
 
-        return numberA;
+        return 0;
     }
 
     //    Напишите метод, который принимает на вход текст и проверяет,
@@ -299,6 +302,9 @@ public class HW10 {
         printTask();
         System.out.println(removeAllZeros("   3 5 0 4 2 0 9 7 0 6 0 4 0       0 0 0 "));
         System.out.println(removeAllZeros(" 0000000111"));
+        System.out.println(removeAllZeros(""));
+        System.out.println(removeAllZeros(null));
+
         line();
 
         /** Task 4 */
@@ -308,6 +314,8 @@ public class HW10 {
         printTask();
         System.out.println(removeAllSpaces("    QA   4  Everyone   "));
         System.out.println(removeAllSpaces("p a     n d a   "));
+        System.out.println(removeAllSpaces(""));
+        System.out.println(removeAllSpaces(null));
         line();
 
         /** Task 5 */
@@ -317,6 +325,8 @@ public class HW10 {
         printTask();
         System.out.println(countAa("Abracadabra"));
         System.out.println(countAa("Homenum Revelio"));
+        System.out.println(countAa(""));
+        System.out.println(countAa(null));
         line();
 
         /** Task 6 */
