@@ -62,14 +62,14 @@ public class HW10 {
 //        Если строка валидная, то метод удаляет все буквы a из строки, если таковые имеются.
 //        Метод возвращает обработанную строку.
     public static String removeAlla(String string) {
-        if (!string.isEmpty()) {
+        if (string != null && !string.isEmpty()) {
             string = string.trim();
             string = string.replace("a", "");
 
             return string;
         }
 
-        return string;
+        return "";
     }
 
     //        Написать алгоритм RemoveAllZeros.
@@ -77,7 +77,7 @@ public class HW10 {
 //        состоящую из цифр. Если строка валидная, то метод удаляет все пробелы из строки,
 //        если таковые имеются. Метод возвращает обработанную строку, в которой нет нулей.
     public static String removeAllZeros(String string) {
-        if (!string.isEmpty()) {
+        if (string != null && !string.isEmpty()) {
             string = string.replace(" ", "");
             string = string.replace("0", "");
         }
@@ -288,6 +288,8 @@ public class HW10 {
         printTask();
         System.out.println(removeAlla("    QA4Everyone   "));
         System.out.println(removeAlla("panda   "));
+        System.out.println(removeAlla(""));
+        System.out.println(removeAlla(null));
         line();
 
         /** Task 3 */
