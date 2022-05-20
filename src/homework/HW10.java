@@ -1,7 +1,5 @@
 package homework;
 
-import java.util.Locale;
-
 import static lessons.Utils.*;
 
 public class HW10 {
@@ -116,8 +114,9 @@ public class HW10 {
 
     //    Напишите метод, который принимает на вход текст и проверяет,
 //    содержится ли в тексте хотя бы одно слово Java.
-    public static boolean findJava(String string) {
-        if (!string.isEmpty()) {
+    public static boolean isJavaInside(String string) {
+        if (string != null && !string.isEmpty()) {
+
             return string.contains("Java");
         }
 
@@ -127,45 +126,54 @@ public class HW10 {
     //    Напишите метод, который принимает на вход строку, и добавляет Кавычки в начале строки,
 //    точку и кавычки в конце строки с помощью метода concat()
     public static String addPunct(String string) {
-        if (string != null) {
+        if (string != null && !string.isEmpty()) {
             String s = "\"";
             string = s.concat(string.trim().concat(".\""));
 
             return string;
         }
 
-        return null;
+        return "";
     }
 
     //    Напишите метод, кторый принимает на вход название города и исправляет написание
     public static String correctCity(String string) {
-        if (!string.isEmpty()) {
-            string = string.trim().toLowerCase();
-            String first = string.substring(0, 1).toUpperCase();
-            string = first.concat(string.substring(1));
+        if (string != null) {
+            string = string.trim();
+            if (!string.isEmpty()) {
+
+                return string.substring(0, 1).toUpperCase().concat(string.substring(1).toLowerCase());
+            }
         }
 
-        return string;
+        return "";
     }
 
-    //    Напишите метод, который принимает на вход строку, и возвращает все,
+    //    Напишите метод, который принимает на вход строку и параметр, и возвращает все,
 //    что находится между первой и последней буквой-параметром:
-    public static String between(String string, char i) {
-        if (!string.isEmpty()) {
-            int index1 = string.indexOf(i);
-            int index2 = string.lastIndexOf(i);
+    public static String between(String string, String letter) {
+        if (string != null && !string.isEmpty()) {
+            if (string.contains(letter)) {
+                if (string.indexOf(letter) != string.lastIndexOf(letter)) {
 
-            return string.substring(index1, index2 + 1);
+                    return string.substring(string.indexOf(letter), string.lastIndexOf(letter) + 1);
+                }
+
+                return "В строке есть только одна такая буква";
+            }
+
+            return "Строка не содержит таких букв";
         }
 
-        return string;
+        return "";
     }
 
     //    Напишите метод, который принимает на вход слово, и возвращает true,
 //    если слово начинается и заканчивается на одинаковую букву, и false иначе
-    public static boolean sameLetters(String string) {
-        if (!string.isEmpty()) {
+    public static boolean areSameLetters(String string) {
+        if (string != null && !string.isEmpty()) {
             string = string.trim().toLowerCase();
+
             return string.charAt(0) == string.charAt(string.length() - 1);
         }
 
@@ -174,13 +182,13 @@ public class HW10 {
 
     //    Напишите метод, который принимает на вход предложение и возвращает
 //    слова из этого предложения в виде массива слов
-    public static String[] arrayWords(String string) {
-        if (!string.isEmpty()) {
+    public static String[] changeStringToArray(String string) {
+        if (string != null && !string.isEmpty()) {
 
             return string.trim().split(" ");
         }
 
-        return new String[0];
+        return new String[]{};
     }
 
     //        Написать метод, который принимает на вход предложение, которое состоит
@@ -334,12 +342,12 @@ public class HW10 {
 //        false
 
         printTask();
-        System.out.println(findJava("As of March 2022, Java 18 is the latest version, while Java 17, 11 and 8 are " +
+        System.out.println(isJavaInside("As of March 2022, Java 18 is the latest version, while Java 17, 11 and 8 are " +
                 "the current long-term support (LTS) versions. Oracle released the last zero-cost public update for " +
                 "the legacy version Java 8 LTS in January 2019 for commercial use, although it will otherwise still " +
                 "support Java 8 with public updates for personal use indefinitely. Other vendors have begun to offer " +
                 "zero-cost builds of OpenJDK 8 and 11 that are still receiving security and other upgrades."));
-        System.out.println(findJava("As a decrepit father takes delight\n" +
+        System.out.println(isJavaInside("As a decrepit father takes delight\n" +
                 "To see his active child do deeds of youth,\n" +
                 "So I, made lame by fortune’s dearest spite,\n" +
                 "Take all my comfort of thy worth and truth.\n" +
@@ -353,6 +361,8 @@ public class HW10 {
                 "And by a part of all thy glory live.\n" +
                 "Look what is best, that best I wish in thee.\n" +
                 "This wish I have; then ten times happy me."));
+        System.out.println(isJavaInside(""));
+        System.out.println(isJavaInside(null));
         line();
 
         /** Task 7 */
@@ -362,6 +372,8 @@ public class HW10 {
         printTask();
         System.out.println(addPunct("One"));
         System.out.println(addPunct("    TWO  "));
+        System.out.println(addPunct(""));
+        System.out.println(addPunct(null));
         line();
 
         /** Task 8 */
@@ -371,6 +383,9 @@ public class HW10 {
         printTask();
         System.out.println(correctCity("ташкент"));
         System.out.println(correctCity("ЧикаГО"));
+        System.out.println(correctCity(""));
+        System.out.println(correctCity(null));
+
         line();
 
         /** Task 9 */
@@ -378,8 +393,12 @@ public class HW10 {
 //        “Whippersnapper”, “p” → “ppersnapp”
 
         printTask();
-        System.out.println(between("Abracadabra", 'b'));
-        System.out.println(between("Whippersnapper", 'p'));
+        System.out.println(between("Abracadabra", "b"));
+        System.out.println(between("Whippersnapper", "p"));
+        System.out.println(between("Whippersnapper", "i"));
+        System.out.println(between("Whippersnapper", "o"));
+        System.out.println(between("", "i"));
+        System.out.println(between(null, "i"));
         line();
 
         /** Task 10 */
@@ -387,8 +406,10 @@ public class HW10 {
 //        “Whippersnapper” → false
 
         printTask();
-        System.out.println(sameLetters("Abracadabra"));
-        System.out.println(sameLetters("Whippersnapper"));
+        System.out.println(areSameLetters("Abracadabra"));
+        System.out.println(areSameLetters("Whippersnapper"));
+        System.out.println(areSameLetters(""));
+        System.out.println(areSameLetters(null));
         line();
 
         /** Task 11 */
@@ -396,10 +417,13 @@ public class HW10 {
 //        “Александр Сергеевич Пушкин” → {“Александр”, “Сергеевич”, “Пушкин”}
 
         printTask();
-        printArray(arrayWords("QA for Everyone"));
+        printArray(changeStringToArray("QA for Everyone"));
         System.out.println();
-        printArray(arrayWords("Александр Сергеевич Пушкин"));
+        printArray(changeStringToArray("Александр Сергеевич Пушкин"));
         System.out.println();
+        printArray(changeStringToArray(""));
+        System.out.println();
+        printArray(changeStringToArray(null));
         line();
 
         /** Task 12 */
