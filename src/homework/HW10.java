@@ -44,12 +44,11 @@ public class HW10 {
 //        Если строка пустая, вернуть сообщение “Строка пустая”.
     public static String checkSpaces(String string) {
         if (string != null && !string.isEmpty()) {
-            int lengthBegin = string.length();
-            string = string.trim();
-            if (lengthBegin > string.length()) {
+
+            if (string.equals(string.trim())) {
 
                 return "Лишние пробелы удалены";
-            } else if (lengthBegin == string.length()) {
+            } else {
 
                 return "Пробелов не было";
             }
@@ -278,6 +277,7 @@ public class HW10 {
         System.out.println(checkSpaces("   QA4Everyone   "));
         System.out.println(checkSpaces("QA4Everyone"));
         System.out.println(checkSpaces(""));
+        System.out.println(checkSpaces("    "));
         System.out.println(checkSpaces(null));
         line();
 
