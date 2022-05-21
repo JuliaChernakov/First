@@ -193,10 +193,9 @@ public class HW10 {
 
     //        Написать метод, который принимает на вход предложение, которое состоит
 //        из имени, фамилии, отчества и возвращает массив строк
-    public static String[] arrayStrings(String string) {
-        if (!string.isEmpty()) {
-            String[] array = new String[3];
-            array = string.split(" ");
+    public static String[] getArrayOfString(String string) {
+        if (string != null && !string.isEmpty()) {
+            String[] array = string.split(" ");
             array[0] = "Имя: " + array[0];
             array[1] = "Отчество: " + array[1];
             array[2] = "Фамилия: " + array[2];
@@ -209,56 +208,41 @@ public class HW10 {
 
     //        Написать метод, который возвращает сумму всех букв слова
     public static int sumAllLetters(String string) {
-        if (!string.isEmpty()) {
-            boolean allLetters = true;
+        if (string != null && !string.isEmpty()) {
             int sum = 0;
 
             /** Option 1 */
-//            char charArray[] = string.toCharArray();
-//            for (int i = 0; i < charArray.length; i++) {
-//                if (charArray[i] < 65 || charArray[i] > 122) {
-//                    allLetters = false;
-//                }
-//            }
-//            if (allLetters) {
-//                for (int i = 0; i < charArray.length; i++) {
-//                    sum += charArray[i];
-//                }
-//
-//                return sum;
-//            }
-            /** end of Option 1 */
+            char[] charArray = string.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
+                if ((charArray[i] >= 65 && charArray[i] <= 90)
+                        || (charArray[i] >= 97 && charArray[i] <= 122)) {
+                    sum += charArray[i];
+                    /** end of Option 1 */
 
-            /** Option 2 */
-            for (int i = 0; i < string.length(); i++) {
-                if (string.charAt(i) < 65 || string.charAt(i) > 122) {
-                    allLetters = false;
+                    /** Option 2 */
+//            for (int i = 0; i < string.length(); i++) {
+//                if ((string.charAt(i) >= 65 && string.charAt(i) <= 90)
+//                        || (string.charAt(i) >= 97 && string.charAt(i) <= 122)) {
+//                    sum += string.charAt(i);
+                    /** end of Option 2 */
+
                 }
             }
-            if (allLetters) {
-                for (int i = 0; i < string.length(); i++) {
-                    sum += string.charAt(i);
-                }
 
-                return sum;
-            }
-            /** end of Option 2 */
+            return sum;
         }
 
         return 0;
     }
 
+
     //        Написать метод, который принимает на вход 2 буквы и возвращает true,
 //        если первая буква встречается раньше второй, иначе метод возвращает false
     public static boolean letterFirst(char letter1, char letter2) {
-        if (letter1 > 65 && letter1 < 122 && letter2 > 65 && letter2 < 122) {
-            if (letter1 < letter2) {
+        if (((letter1 >= 65 && letter1 <= 90) || (letter1 >= 97 && letter1 <= 122))
+                && ((letter2 >= 65 && letter2 <= 90) || (letter2 >= 97 && letter2 <= 122))) {
 
-                return true;
-            } else {
-
-                return false;
-            }
+            return letter1 < letter2;
         }
 
         return false;
@@ -418,11 +402,8 @@ public class HW10 {
 
         printTask();
         printArray(changeStringToArray("QA for Everyone"));
-        System.out.println();
         printArray(changeStringToArray("Александр Сергеевич Пушкин"));
-        System.out.println();
         printArray(changeStringToArray(""));
-        System.out.println();
         printArray(changeStringToArray(null));
         line();
 
@@ -431,8 +412,9 @@ public class HW10 {
 //        {“Имя: Александр”, “Отчество: Сергеевич”, “Фамилия: Пушкин”}
 
         printTask();
-        printArray(arrayStrings("Александр Сергеевич Пушкин"));
-        System.out.println();
+        printArray(getArrayOfString("Александр Сергеевич Пушкин"));
+        printArray(getArrayOfString(""));
+        printArray(getArrayOfString(null));
         line();
 
         /** Task 13 */
@@ -444,6 +426,8 @@ public class HW10 {
         System.out.println(sumAllLetters("abc"));
         System.out.println(sumAllLetters("ABC"));
         System.out.println(sumAllLetters("123"));
+        System.out.println(sumAllLetters(""));
+        System.out.println(sumAllLetters(null));
         line();
 
         /** Task 14 */
@@ -453,6 +437,8 @@ public class HW10 {
         printTask();
         System.out.println(letterFirst('a', 'm'));
         System.out.println(letterFirst('m', 'l'));
+        System.out.println(letterFirst('m', 'm'));
+        System.out.println(letterFirst('.', '/'));
         line();
     }
 }

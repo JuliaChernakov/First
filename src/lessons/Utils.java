@@ -56,13 +56,15 @@ public class Utils {
 
     public static void printArray(String[] array) {
         if (array != null && array.length > 0) {
-            System.out.print("{");
+            System.out.print("[");
             for (int i = 0; i < array.length - 1; i++) {
                 System.out.print("\"" + array[i] + "\", ");
             }
-            System.out.print("\"" + array[array.length - 1] + "\"" + "}");
+            System.out.print("\"" + array[array.length - 1] + "\"" + "]");
+            System.out.println();
+        } else {
+            System.out.println("[]");
         }
-        System.out.println("Error");
     }
 
     /**

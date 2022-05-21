@@ -471,7 +471,6 @@ public class HW8 {
         String country = "Belarus";
         String[] arrayNew22 = tel(array22, country);
         printArray(arrayNew22);
-        System.out.println("");
         line();
 
         /** Task 23 */
